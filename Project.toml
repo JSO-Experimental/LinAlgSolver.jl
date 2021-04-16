@@ -1,0 +1,17 @@
+name = "LinAlgSolver"
+uuid = "7f46da14-2333-44f8-9263-3a81f75c483f"
+version = "0.0.1"
+
+[deps]
+SolverCore = "ff4d7338-4cf1-434d-91df-b86cb86fb843"
+
+[compat]
+julia = "^1.3.0"
+
+[extras]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["LinearAlgebra", "Logging", "Test"]
