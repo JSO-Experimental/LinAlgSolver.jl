@@ -32,7 +32,9 @@
       b = rand(T, 5)
       problem = LinAlgProblem(A, b)
       solver = DummySolver(problem)
-      output = solve!(solver, problem)
+      output = with_logger(NullLogger()) do
+        solve!(solver, problem)
+      end
       @test eltype(output.solution) == T
       @test typeof(output.residual) == T
     end

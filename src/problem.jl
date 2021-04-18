@@ -10,3 +10,5 @@ function LinAlgProblem(A, b)
   S = typeof(b)
   LinAlgProblem{T, S}(A, b)
 end
+
+function SolverCore.reset_problem!(::LinAlgProblem) end
