@@ -5,7 +5,7 @@ using LinAlgSolver
 using SolverCore
 
 # stdlib
-using LinearAlgebra, Logging, Test
+using LinearAlgebra, LinearOperators, Logging, Test
 
 include("dummy_solver.jl")
 

@@ -32,4 +32,27 @@
     @test grid_output[1][2][2] == 0 # Solved all problem
     @test grid_output[end][2][2] == length(problems) # Solved no problems
   end
+
+  @testset "Solver constructors" begin
+    A = rand(5, 2)
+    b = rand(5)
+    solver = DummySolver(A, b)
+    @test solver isa DummySolver{Float64, Vector{Float64}}
+    solver = DummySolver(LinearOperator(A), b)
+    @test solver isa DummySolver{Float64, Vector{Float64}}
+    solver = DummySolver{Float64, Vector{Float64}}(A, b)
+    @test solver isa DummySolver{Float64, Vector{Float64}}
+
+    problem = LinAlgProblem(A, b)
+    solver = DummySolver(problem)
+    @test solver isa DummySolver{Float64, Vector{Float64}}
+    solver = DummySolver{Float64, Vector{Float64}}(problem)
+    @test solver isa DummySolver{Float64, Vector{Float64}}
+
+    problem = LinAlgProblem(LinearOperator(A), b)
+    solver = DummySolver(problem)
+    @test solver isa DummySolver{Float64, Vector{Float64}}
+    solver = DummySolver{Float64, Vector{Float64}}(problem)
+    @test solver isa DummySolver{Float64, Vector{Float64}}
+  end
 end

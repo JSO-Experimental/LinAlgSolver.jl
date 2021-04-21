@@ -13,4 +13,15 @@ In addition, a `Solver{T, S} <: AbstractLinAlgSolver{T, S}` must define the `sol
 """
 abstract type AbstractLinAlgSolver{T, S} <: AbstractSolver{T, S} end
 
-(::Type{S})(A, b; kwargs...) where {S <: AbstractLinAlgSolver} = S(LinAlgProblem(A, b); kwargs...)
+function (::Type{Solver})(A, b; kwargs...) where {T, S, Solver <: AbstractLinAlgSolver{T, S}}
+  Solver(LinAlgProblem{T, S}(A, b); kwargs...)
+end
+
+function (::Type{Solver})(A, b::S; kwargs...) where {S, Solver <: AbstractLinAlgSolver}
+  T = eltype(b)
+  Solver{T, S}(LinAlgProblem{T, S}(A, b); kwargs...)
+end
+
+function (::Type{Solver})(problem::LinAlgProblem{T, S}; kwargs...) where {T, S, Solver <: AbstractLinAlgSolver}
+  return Solver{T, S}(problem; kwargs...)
+end

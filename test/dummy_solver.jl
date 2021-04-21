@@ -15,7 +15,7 @@ function SolverCore.are_valid_parameters(::Type{DummySolver}, α, σ)
   return (0 < σ ≤ 1) && (α > 0)
 end
 
-function DummySolver(problem::LinAlgProblem{T, S}; kwargs...) where {T, S}
+function DummySolver{T, S}(problem::LinAlgProblem{T, S}; kwargs...) where {T, S}
   m, n = size(problem.A)
   solver = DummySolver{T, S}(
     true,
