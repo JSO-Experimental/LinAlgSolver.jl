@@ -1,6 +1,7 @@
 export LinAlgSolverOutput
 
 SolverCore.solver_output_type(::Type{<: AbstractLinAlgSolver{T, S}}) where {T, S} = LinAlgSolverOutput{T, S}
+SolverCore.solver_output_type(::Type{<: AbstractLinAlgSolver}) = LinAlgSolverOutput{Number, Any}
 
 mutable struct LinAlgSolverOutput{T, S} <: AbstractSolverOutput{T, S}
   status::Symbol
